@@ -8,10 +8,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.luiz.config.ConectaBanco;
+import com.luiz.model.Colaborador;
 import com.luiz.model.ItemCafe;
 
 public class ItemCafeDAO {
 
+	
+	public List<ItemCafe> listarItemCafeComColab() throws Exception {
+		List<ItemCafe> lista = new ArrayList<>();
+
+		Connection conexao = ConectaBanco.getConnection();
+
+		String sql = "SELECT *  FROM tb_colaborador as c INNER JOIN  item_cafe as i ON c.cpf_colab = i.cpf_colab;";
+
+		PreparedStatement statement = conexao.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+
+		while (rs.next()) {
+			Colaborador colab = new Colaborador();
+			ItemCafe cafe = new ItemCafe();
+			colab.setCpf_colab(rs.getInt("cpf_colab"));
+			colab.setNome_colab(rs.getString("nome_colab"));
+			cafe.setId_item(rs.getInt("id_item"));
+			cafe.setCpf_colaborador(rs.getInt("cpf_colaborador"));
+			cafe.setNome_item(rs.getString("nome_item"));
+			
+
+			lista.add(cafe);
+		}
+
+		return lista;
+	}
+	
+	
 	
 	
 	public int addItemCafe(ItemCafe cafe) throws Exception {
