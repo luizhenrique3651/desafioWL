@@ -14,6 +14,7 @@ import com.luiz.model.ItemCafe;
 public class ItemCafeDAO {
 
 	
+	//select com inner join das chaves primarias e secundarias para chamar os items que serão levados e dizer qual colaborador o vai levar
 	public List<ItemCafe> listarItemCafeComColab() throws Exception {
 		List<ItemCafe> lista = new ArrayList<>();
 
@@ -41,7 +42,7 @@ public class ItemCafeDAO {
 	}
 	
 	
-	
+	//insert do item café
 	
 	public int addItemCafe(ItemCafe cafe) throws Exception {
 		int idGerado = 0;
@@ -62,7 +63,7 @@ public class ItemCafeDAO {
 		return idGerado;
 	}
 	
-	
+	//select
 	public List<ItemCafe> listarItemCafe() throws Exception {
 		List<ItemCafe> lista = new ArrayList<>();
 
@@ -85,7 +86,7 @@ public class ItemCafeDAO {
 
 		return lista;
 	}
-	
+	//select com where do cpf de dado coaborador
 	public ItemCafe buscarItemPorCpfColab(int cpf_colaborador) throws Exception {
 		ItemCafe cafe = null;
 
@@ -106,7 +107,7 @@ public class ItemCafeDAO {
 
 		return cafe;
 	}
-	
+	//update
 	public void editarItemCafe(ItemCafe itemCafe, int id_item) throws Exception {
 		Connection conexao = ConectaBanco.getConnection();
 
@@ -118,6 +119,7 @@ public class ItemCafeDAO {
 		statement.execute();
 	}
 	
+	//remove
 	
 	public void removerItemCafe(int id_item) throws Exception {
 		Connection conexao = ConectaBanco.getConnection();
